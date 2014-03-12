@@ -127,13 +127,11 @@ public class SatelliteMenu extends FrameLayout {
 			if (!rotated) {
 				imgMain.startAnimation(mainRotateLeft);
 				for (SatelliteMenuItem item : menuItems) {
-					//item.getCloneView().startAnimation(item.getOutAnimation()); //++++
 					item.getView().startAnimation(item.getOutAnimation());
 				}
 			} else {
 				imgMain.startAnimation(mainRotateRight);
 				for (SatelliteMenuItem item : menuItems) {
-					//item.getCloneView().startAnimation(item.getInAnimation()); //+++				
 					item.getView().startAnimation(item.getInAnimation());
 				}
 			}
@@ -190,16 +188,15 @@ public class SatelliteMenu extends FrameLayout {
 			cloneView.setTag(menuItem.getId());
 			cloneView.setVisibility(View.GONE);
 			
-			//FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) cloneView.getLayoutParams();
-			//FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(itemView.getLayoutParams());
+			FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) cloneView.getLayoutParams();
 			
-			//layoutParams.bottomMargin = Math.abs(finalY);
-			//layoutParams.leftMargin = Math.abs(finalX-100);
-			//cloneView.setLayoutParams(layoutParams);
+			layoutParams.bottomMargin = Math.abs(finalY);
+			layoutParams.rightMargin = Math.abs(finalX);
+			cloneView.setLayoutParams(layoutParams);
 			
-			if (menuItem.getImgResourceId()[0] > 0) {
-				itemView.setImageResource(menuItem.getImgResourceId()[0]);
-				cloneView.setImageResource(menuItem.getImgResourceId()[1]);
+			if (menuItem.getImgResourceId() > 0) {
+				itemView.setImageResource(menuItem.getImgResourceId());
+				cloneView.setImageResource(menuItem.getImgResourceId());
 			} else if (menuItem.getImgDrawable() != null) {
 				itemView.setImageDrawable(menuItem.getImgDrawable());
 				cloneView.setImageDrawable(menuItem.getImgDrawable());
@@ -218,8 +215,6 @@ public class SatelliteMenu extends FrameLayout {
 			menuItem.setInAnimation(itemIn);
 			menuItem.setOutAnimation(itemOut);
 			menuItem.setClickAnimation(itemClick);
-			//menuItem.setFinalX(finalX);
-			//menuItem.setFinalY(finalY);
 
 			itemIn.setAnimationListener(new SatelliteAnimationListener(itemView, true, viewToItemMap));
 			itemOut.setAnimationListener(new SatelliteAnimationListener(itemView, false, viewToItemMap));
@@ -353,10 +348,6 @@ public class SatelliteMenu extends FrameLayout {
 	public Map<View, SatelliteMenuItem> getViewToItemMap() {
 		return viewToItemMap;
 	}
-	
-	/*private static FrameLayout.LayoutParams getLayoutParams(View view) {
-		return (FrameLayout.LayoutParams) view.getLayoutParams();
-	}*/
 
 	private static class InternalSatelliteOnClickListener implements View.OnClickListener {
 		private WeakReference<SatelliteMenu> menuRef;

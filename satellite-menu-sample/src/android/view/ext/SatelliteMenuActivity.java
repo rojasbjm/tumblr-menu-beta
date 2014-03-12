@@ -25,17 +25,12 @@ public class SatelliteMenuActivity extends Activity {
 //        menu.setTotalSpacingDegree(60);
         
         List<SatelliteMenuItem> items = new ArrayList<SatelliteMenuItem>();
-        items.add(new SatelliteMenuItem(4, new int[]{ R.drawable.button_status_off, R.drawable.button_status_on }));
-        items.add(new SatelliteMenuItem(3, new int[]{ R.drawable.button_photo_off, R.drawable.button_photo_on }));
-        items.add(new SatelliteMenuItem(2, new int[]{ R.drawable.button_feelings_off, R.drawable.button_feelings_on }));
-        //items.add(new SatelliteMenuItem(3, R.drawable.ic_5));
-        //items.add(new SatelliteMenuItem(2, R.drawable.ic_6));
-        //items.add(new SatelliteMenuItem(1, R.drawable.ic_2));
-//        items.add(new SatelliteMenuItem(5, R.drawable.sat_item));
+        items.add(new SatelliteMenuItem(1, R.drawable.button_status_off));
+        items.add(new SatelliteMenuItem(2, R.drawable.button_photo_off));
+        items.add(new SatelliteMenuItem(3, R.drawable.button_feelings_off));
         menu.addItems(items);        
         
         menu.setOnItemClickedListener(new SateliteClickedListener() {
-			
 			public void eventOccured(int id) {
 				Log.i("sat", "Clicked on " + id);
 			}
