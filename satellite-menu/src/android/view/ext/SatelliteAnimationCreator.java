@@ -56,7 +56,7 @@ public class SatelliteAnimationCreator {
         alphaAnimation.setStartOffset((delay + duration) - alphaDuration);
         
         AnimationSet animationSet = new AnimationSet(false);
-        animationSet.setFillAfter(false); //+++
+        animationSet.setFillAfter(false);
         animationSet.setFillBefore(true);
         animationSet.setFillEnabled(true);
         

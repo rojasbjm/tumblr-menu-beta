@@ -189,7 +189,6 @@ public class SatelliteMenu extends FrameLayout {
 			cloneView.setVisibility(View.GONE);
 			
 			FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) cloneView.getLayoutParams();
-			
 			layoutParams.bottomMargin = Math.abs(finalY);
 			layoutParams.rightMargin = Math.abs(finalX);
 			cloneView.setLayoutParams(layoutParams);
@@ -206,12 +205,8 @@ public class SatelliteMenu extends FrameLayout {
 			Animation itemIn = SatelliteAnimationCreator.createItemInAnimation(getContext(), index, expandDuration, finalX, finalY);
 			Animation itemClick = SatelliteAnimationCreator.createItemClickAnimation(getContext());
 			
-			itemOut.setFillAfter(true);
-			
-
 			menuItem.setView(itemView);
 			menuItem.setCloneView(cloneView);
-			
 			menuItem.setInAnimation(itemIn);
 			menuItem.setOutAnimation(itemOut);
 			menuItem.setClickAnimation(itemClick);
