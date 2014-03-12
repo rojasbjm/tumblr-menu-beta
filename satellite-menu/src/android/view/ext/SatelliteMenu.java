@@ -21,7 +21,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Provides a "Path" like menu for android. ??
@@ -128,13 +127,13 @@ public class SatelliteMenu extends FrameLayout {
 			if (!rotated) {
 				imgMain.startAnimation(mainRotateLeft);
 				for (SatelliteMenuItem item : menuItems) {
-					item.getCloneView().startAnimation(item.getOutAnimation()); //++++
+					//item.getCloneView().startAnimation(item.getOutAnimation()); //++++
 					item.getView().startAnimation(item.getOutAnimation());
 				}
 			} else {
 				imgMain.startAnimation(mainRotateRight);
 				for (SatelliteMenuItem item : menuItems) {
-					item.getCloneView().startAnimation(item.getInAnimation()); //+++				
+					//item.getCloneView().startAnimation(item.getInAnimation()); //+++				
 					item.getView().startAnimation(item.getInAnimation());
 				}
 			}
@@ -186,12 +185,11 @@ public class SatelliteMenu extends FrameLayout {
 			ImageButton cloneView = (ImageButton) LayoutInflater.from(getContext()).inflate(R.layout.sat_item_cr, this, false);
 			
 			itemView.setTag(menuItem.getId());
-			cloneView.setVisibility(View.GONE);
 			itemView.setVisibility(View.GONE);
 			
+			cloneView.setTag(menuItem.getId());
+			cloneView.setVisibility(View.GONE);
 			
-			
-			cloneView.setTag(Integer.valueOf(menuItem.getId()));
 			//FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) cloneView.getLayoutParams();
 			//FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(itemView.getLayoutParams());
 			
@@ -199,9 +197,9 @@ public class SatelliteMenu extends FrameLayout {
 			//layoutParams.leftMargin = Math.abs(finalX-100);
 			//cloneView.setLayoutParams(layoutParams);
 			
-			if (menuItem.getImgResourceId() > 0) {
-				itemView.setImageResource(menuItem.getImgResourceId());
-				cloneView.setImageResource(menuItem.getImgResourceId());
+			if (menuItem.getImgResourceId()[0] > 0) {
+				itemView.setImageResource(menuItem.getImgResourceId()[0]);
+				cloneView.setImageResource(menuItem.getImgResourceId()[1]);
 			} else if (menuItem.getImgDrawable() != null) {
 				itemView.setImageDrawable(menuItem.getImgDrawable());
 				cloneView.setImageDrawable(menuItem.getImgDrawable());
@@ -220,8 +218,8 @@ public class SatelliteMenu extends FrameLayout {
 			menuItem.setInAnimation(itemIn);
 			menuItem.setOutAnimation(itemOut);
 			menuItem.setClickAnimation(itemClick);
-			menuItem.setFinalX(finalX);
-			menuItem.setFinalY(finalY);
+			//menuItem.setFinalX(finalX);
+			//menuItem.setFinalY(finalY);
 
 			itemIn.setAnimationListener(new SatelliteAnimationListener(itemView, true, viewToItemMap));
 			itemOut.setAnimationListener(new SatelliteAnimationListener(itemView, false, viewToItemMap));
@@ -322,8 +320,8 @@ public class SatelliteMenu extends FrameLayout {
 						menuItem.getView().setVisibility(View.VISIBLE);
 						menuItem.getCloneView().setVisibility(View.GONE);
 					} else {
-						menuItem.getCloneView().setVisibility(View.GONE);
 						menuItem.getView().setVisibility(View.VISIBLE);
+						menuItem.getCloneView().setVisibility(View.GONE);
 					}
 				}
 			}
@@ -341,11 +339,11 @@ public class SatelliteMenu extends FrameLayout {
 					SatelliteMenuItem menuItem = viewToItemMap.get(view);
 
 					if (isInAnimation) {
-						menuItem.getView().setVisibility(View.VISIBLE);
+						menuItem.getView().setVisibility(View.GONE);
 						menuItem.getCloneView().setVisibility(View.GONE);
 					} else {
-						menuItem.getCloneView().setVisibility(View.VISIBLE);
 						menuItem.getView().setVisibility(View.VISIBLE);
+						menuItem.getCloneView().setVisibility(View.VISIBLE);
 					}
 				}
 			}

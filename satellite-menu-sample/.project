@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>satellite-menu-sample</name>
+	<name>SatelliteMenuSample</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -31,4 +31,3 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
 </projectDescription>
-

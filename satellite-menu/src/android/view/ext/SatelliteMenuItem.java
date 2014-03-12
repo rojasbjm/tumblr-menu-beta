@@ -3,7 +3,6 @@ package android.view.ext;
 import android.graphics.drawable.Drawable;
 import android.view.animation.Animation;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 /**
  * Menu Item. 
@@ -15,17 +14,17 @@ import android.widget.ImageView;
  */
 public class SatelliteMenuItem {
     private int id;
-    private int imgResourceId;
+    private int[] imgResourceId;
     private Drawable imgDrawable;
     private ImageButton view;
     private ImageButton cloneView;
     private Animation outAnimation;
     private Animation inAnimation;
     private Animation clickAnimation;
-    private int finalX;
-    private int finalY;
+    //private int finalX;
+    //private int finalY;
 
-    public SatelliteMenuItem(int id, int imgResourceId) {
+    public SatelliteMenuItem(int id, int[] imgResourceId) {
         this.imgResourceId = imgResourceId;
         this.id = id;
     }    
@@ -43,11 +42,11 @@ public class SatelliteMenuItem {
         this.id = id;
     }
 
-    public int getImgResourceId() {
+    public int[] getImgResourceId() {
         return imgResourceId;
     }
 
-    public void setImgResourceId(int imgResourceId) {
+    public void setImgResourceId(int[] imgResourceId) {
         this.imgResourceId = imgResourceId;
     }
 
@@ -91,21 +90,21 @@ public class SatelliteMenuItem {
         return outAnimation;
     }
     
-    void setFinalX(int finalX) {
-		this.finalX = finalX;
-	}
-    
-    void setFinalY(int finalY) {
-		this.finalY = finalY;
-	}
-    
-    int getFinalX() {
-		return finalX;
-	}
-    
-    int getFinalY() {
-		return finalY;
-	}
+//    void setFinalX(int finalX) {
+//		this.finalX = finalX;
+//	}
+//    
+//    void setFinalY(int finalY) {
+//		this.finalY = finalY;
+//	}
+//    
+//    int getFinalX() {
+//		return finalX;
+//	}
+//    
+//    int getFinalY() {
+//		return finalY;
+//	}
 
 	void setClickAnimation(Animation clickAnim) {
 		this.clickAnimation = clickAnim;		

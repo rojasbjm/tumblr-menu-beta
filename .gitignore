@@ -1,0 +1,9 @@
+gen/
+bin/
+.apt_generated
+.factorypath
+.project
+.classpath
+.settings/
+target/
+.DS_Store
