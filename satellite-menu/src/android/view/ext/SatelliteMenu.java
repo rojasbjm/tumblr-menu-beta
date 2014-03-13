@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,7 +87,7 @@ public class SatelliteMenu extends FrameLayout {
 			totalSpacingDegree = typedArray.getFloat(R.styleable.SatelliteMenu_totalSpacingDegree, DEFAULT_TOTAL_SPACING_DEGREES);
 			closeItemsOnClick = typedArray.getBoolean(R.styleable.SatelliteMenu_closeOnClick, DEFAULT_CLOSE_ON_CLICK);
 			expandDuration = typedArray.getInt(R.styleable.SatelliteMenu_expandDuration, DEFAULT_EXPAND_DURATION);
-			//float satelliteDistance = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 170, getResources().getDisplayMetrics());
+			//satelliteDistance = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 170, getResources().getDisplayMetrics());
 			typedArray.recycle();
 		}
 		
@@ -164,7 +165,6 @@ public class SatelliteMenu extends FrameLayout {
 	}
 
 	public void addItems(List<SatelliteMenuItem> items) {
-
 		Log.d("SATELLITE", "add items");
 		menuItems.addAll(items);
 		this.removeView(imgMain);
@@ -176,8 +176,9 @@ public class SatelliteMenu extends FrameLayout {
 		for (SatelliteMenuItem menuItem : menuItems) {
 			int finalX = SatelliteAnimationCreator.getTranslateX(
 					degrees[index], DEFAULT_SATELLITE_DISTANCE) - 300;
+			DisplayMetrics metrics = getResources().getDisplayMetrics();
 			int finalY = SatelliteAnimationCreator.getTranslateY(
-					degrees[index], DEFAULT_SATELLITE_DISTANCE);
+					degrees[index], DEFAULT_SATELLITE_DISTANCE, metrics.densityDpi);
 
 			ImageButton itemView = (ImageButton) LayoutInflater.from(getContext()).inflate(R.layout.sat_item_cr, this, false);
 			ImageButton cloneView = (ImageButton) LayoutInflater.from(getContext()).inflate(R.layout.sat_item_cr, this, false);
@@ -211,10 +212,12 @@ public class SatelliteMenu extends FrameLayout {
 			menuItem.setOutAnimation(itemOut);
 			menuItem.setClickAnimation(itemClick);
 
+			
 			itemIn.setAnimationListener(new SatelliteAnimationListener(itemView, true, viewToItemMap));
 			itemOut.setAnimationListener(new SatelliteAnimationListener(itemView, false, viewToItemMap));
 			itemClick.setAnimationListener(new SatelliteItemClickAnimationListener(this, menuItem.getId()));
 			
+			itemOut.setFillAfter(true);			
 		
 			cloneView.setOnClickListener(internalItemClickListener);
 			this.addView(itemView);			
