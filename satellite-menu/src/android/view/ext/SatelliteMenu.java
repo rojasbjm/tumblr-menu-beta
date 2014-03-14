@@ -12,6 +12,7 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.BoringLayout.Metrics;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -174,11 +175,11 @@ public class SatelliteMenu extends FrameLayout {
 		float[] degrees = getDegrees(menuItems.size());
 		int index = 0;
 		for (SatelliteMenuItem menuItem : menuItems) {
-			int finalX = SatelliteAnimationCreator.getTranslateX(
-					degrees[index], DEFAULT_SATELLITE_DISTANCE) - 300;
 			DisplayMetrics metrics = getResources().getDisplayMetrics();
+			int finalX = SatelliteAnimationCreator.getTranslateX(
+					degrees[index], metrics.densityDpi) - metrics.densityDpi; //DEFAULT_SATELLITE_DISTANCE) - 300	
 			int finalY = SatelliteAnimationCreator.getTranslateY(
-					degrees[index], DEFAULT_SATELLITE_DISTANCE, metrics.densityDpi);
+					degrees[index], metrics.densityDpi);
 
 			ImageButton itemView = (ImageButton) LayoutInflater.from(getContext()).inflate(R.layout.sat_item_cr, this, false);
 			ImageButton cloneView = (ImageButton) LayoutInflater.from(getContext()).inflate(R.layout.sat_item_cr, this, false);

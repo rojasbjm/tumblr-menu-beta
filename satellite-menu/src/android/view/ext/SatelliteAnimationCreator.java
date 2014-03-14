@@ -1,7 +1,6 @@
 package android.view.ext;
 
 import android.content.Context;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -136,8 +135,9 @@ public class SatelliteAnimationCreator {
         return Double.valueOf(distance * Math.cos(Math.toRadians(degree))).intValue();
     }
     
-    public static int getTranslateY(float degree, int distance, int dpiScreen){
-        return Double.valueOf(-1 * (distance + (dpiScreen / 2)) * Math.sin(Math.toRadians(degree))).intValue();
+    public static int getTranslateY(float degree, int distance){
+        return Double.valueOf(-1 * distance * Math.sin(Math.toRadians(degree))).intValue();
+        // (distance + (dpiScreen / 2))
     }
 
 }

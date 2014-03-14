@@ -4,6 +4,7 @@
         android:id="@+id/sat_main"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:scaleType="fitXY"
         android:background="@null"
         android:src="@drawable/button_share" 
         android:layout_gravity="bottom|right" 
