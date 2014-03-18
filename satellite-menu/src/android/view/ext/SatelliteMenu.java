@@ -12,7 +12,6 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.text.BoringLayout.Metrics;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -182,7 +181,7 @@ public class SatelliteMenu extends FrameLayout {
 					degrees[index], metrics.densityDpi);
 
 			ImageButton itemView = (ImageButton) LayoutInflater.from(getContext()).inflate(R.layout.sat_item_cr, this, false);
-			ImageButton cloneView = (ImageButton) LayoutInflater.from(getContext()).inflate(R.layout.sat_item_cr, this, false);
+			View cloneView = (View) LayoutInflater.from(getContext()).inflate(R.layout.sat_item_img_txt, this, false);
 			
 			itemView.setTag(menuItem.getId());
 			itemView.setVisibility(View.GONE);
@@ -197,10 +196,10 @@ public class SatelliteMenu extends FrameLayout {
 			
 			if (menuItem.getImgResourceId() > 0) {
 				itemView.setImageResource(menuItem.getImgResourceId());
-				cloneView.setImageResource(menuItem.getImgResourceId());
+				((ImageView) cloneView.findViewById(R.id.sat_item)).setImageResource(menuItem.getImgResourceId());
 			} else if (menuItem.getImgDrawable() != null) {
 				itemView.setImageDrawable(menuItem.getImgDrawable());
-				cloneView.setImageDrawable(menuItem.getImgDrawable());
+				((ImageView) cloneView.findViewById(R.id.sat_item)).setImageDrawable(menuItem.getImgDrawable());
 			}
 
 			Animation itemOut = SatelliteAnimationCreator.createItemOutAnimation(getContext(), index,expandDuration, finalX, finalY);
@@ -313,9 +312,11 @@ public class SatelliteMenu extends FrameLayout {
 					if (isInAnimation) {
 						menuItem.getView().setVisibility(View.VISIBLE);
 						menuItem.getCloneView().setVisibility(View.GONE);
+						menuItem.getCloneView().findViewById(R.id.sat_text).setVisibility(View.GONE);
 					} else {
 						menuItem.getView().setVisibility(View.VISIBLE);
 						menuItem.getCloneView().setVisibility(View.GONE);
+						menuItem.getCloneView().findViewById(R.id.sat_text).setVisibility(View.GONE);
 					}
 				}
 			}
@@ -335,9 +336,11 @@ public class SatelliteMenu extends FrameLayout {
 					if (isInAnimation) {
 						menuItem.getView().setVisibility(View.GONE);
 						menuItem.getCloneView().setVisibility(View.GONE);
+						menuItem.getCloneView().findViewById(R.id.sat_text).setVisibility(View.GONE);
 					} else {
 						menuItem.getView().setVisibility(View.VISIBLE);
 						menuItem.getCloneView().setVisibility(View.VISIBLE);
+						menuItem.getCloneView().findViewById(R.id.sat_text).setVisibility(View.VISIBLE);
 					}
 				}
 			}
