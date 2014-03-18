@@ -1,6 +1,7 @@
 package android.view.ext;
 
 import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageButton;
 
@@ -17,7 +18,7 @@ public class SatelliteMenuItem {
     private int imgResourceId;
     private Drawable imgDrawable;
     private ImageButton view;
-    private ImageButton cloneView;
+    private View cloneView;
     private Animation outAnimation;
     private Animation inAnimation;
     private Animation clickAnimation;
@@ -64,11 +65,11 @@ public class SatelliteMenuItem {
         return view;
     }
     
-    void setCloneView(ImageButton cloneView) {
+    void setCloneView(View cloneView) {
         this.cloneView = cloneView;
     }
     
-    ImageButton getCloneView() {
+    View getCloneView() {
         return cloneView;
     }
     
