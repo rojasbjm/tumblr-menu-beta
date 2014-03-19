@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -61,6 +62,8 @@ public class SatelliteMenu extends FrameLayout {
 	private int satelliteDistance = DEFAULT_SATELLITE_DISTANCE;	
 	private int expandDuration = DEFAULT_EXPAND_DURATION;
 	private boolean closeItemsOnClick = DEFAULT_CLOSE_ON_CLICK;
+	
+	private static TranslateAnimation animate;
 
 	public SatelliteMenu(Context context) {
 		super(context);
@@ -176,7 +179,7 @@ public class SatelliteMenu extends FrameLayout {
 		for (SatelliteMenuItem menuItem : menuItems) {
 			DisplayMetrics metrics = getResources().getDisplayMetrics();
 			int finalX = SatelliteAnimationCreator.getTranslateX(
-					degrees[index], metrics.densityDpi) - metrics.densityDpi; //DEFAULT_SATELLITE_DISTANCE) - 300	
+					degrees[index], metrics.densityDpi) - metrics.densityDpi;	
 			int finalY = SatelliteAnimationCreator.getTranslateY(
 					degrees[index], metrics.densityDpi);
 
@@ -188,6 +191,9 @@ public class SatelliteMenu extends FrameLayout {
 			
 			cloneView.setTag(menuItem.getId());
 			cloneView.setVisibility(View.GONE);
+			
+			TextView cloneTextView = (TextView) cloneView.findViewById(R.id.sat_text);
+			cloneTextView.setText(menuItem.getButtonTittle());
 			
 			FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) cloneView.getLayoutParams();
 			layoutParams.bottomMargin = Math.abs(finalY);
@@ -339,8 +345,12 @@ public class SatelliteMenu extends FrameLayout {
 						menuItem.getCloneView().findViewById(R.id.sat_text).setVisibility(View.GONE);
 					} else {
 						menuItem.getView().setVisibility(View.VISIBLE);
-						menuItem.getCloneView().setVisibility(View.VISIBLE);
+						animate = new TranslateAnimation(menuItem.getCloneView().findViewById(R.id.sat_text).getWidth(),0,0,0);
+						animate.setDuration(500);
+						animate.setFillAfter(true);
 						menuItem.getCloneView().findViewById(R.id.sat_text).setVisibility(View.VISIBLE);
+						menuItem.getCloneView().findViewById(R.id.sat_text).startAnimation(animate);
+						menuItem.getCloneView().setVisibility(View.VISIBLE);
 					}
 				}
 			}

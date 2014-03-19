@@ -3,7 +3,9 @@ package android.view.ext;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 /**
  * Menu Item. 
@@ -22,6 +24,9 @@ public class SatelliteMenuItem {
     private Animation outAnimation;
     private Animation inAnimation;
     private Animation clickAnimation;
+    private TextView cloneTextView;
+    private String buttonTittle;
+    private TranslateAnimation textAnimation;
 
     public SatelliteMenuItem(int id, int imgResourceId) {
         this.imgResourceId = imgResourceId;
@@ -32,7 +37,19 @@ public class SatelliteMenuItem {
         this.imgDrawable = imgDrawable;
         this.id = id;
     }
+    
+    public SatelliteMenuItem(int id, int imgResourceId, String tittle) {
+        this.imgResourceId = imgResourceId;
+        this.id = id;
+        this.buttonTittle = tittle;
+    }    
 
+    public SatelliteMenuItem(int id, Drawable imgDrawable, String tittle) {
+        this.imgDrawable = imgDrawable;
+        this.id = id;
+        this.buttonTittle = tittle;
+    }
+    
     public int getId() {
         return id;
     }
@@ -95,5 +112,29 @@ public class SatelliteMenuItem {
 	
 	Animation getClickAnimation() {
 		return clickAnimation;
+	}
+
+	public TextView getCloneTextView() {
+		return cloneTextView;
+	}
+
+	public void setCloneTextView(TextView cloneTextView) {
+		this.cloneTextView = cloneTextView;
+	}
+
+	public String getButtonTittle() {
+		return buttonTittle;
+	}
+
+	public void setButtonTittle(String buttonTittle) {
+		this.buttonTittle = buttonTittle;
+	}
+
+	public TranslateAnimation getTextAnimation() {
+		return textAnimation;
+	}
+
+	public void setTextAnimation(TranslateAnimation textAnimation) {
+		this.textAnimation = textAnimation;
 	}
 }

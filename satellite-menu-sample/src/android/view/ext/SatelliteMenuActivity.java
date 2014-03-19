@@ -25,9 +25,9 @@ public class SatelliteMenuActivity extends Activity {
 //        menu.setTotalSpacingDegree(60);
         
         List<SatelliteMenuItem> items = new ArrayList<SatelliteMenuItem>();
-        items.add(new SatelliteMenuItem(1, R.drawable.status));
-        items.add(new SatelliteMenuItem(2, R.drawable.photo));
-        items.add(new SatelliteMenuItem(3, R.drawable.feelings));
+        items.add(new SatelliteMenuItem(1, R.drawable.status, "Uno!"));
+        items.add(new SatelliteMenuItem(2, R.drawable.photo, "Dos!"));
+        items.add(new SatelliteMenuItem(3, R.drawable.feelings, "Tres!"));
         menu.addItems(items);        
         
         menu.setOnItemClickedListener(new SateliteClickedListener() {
