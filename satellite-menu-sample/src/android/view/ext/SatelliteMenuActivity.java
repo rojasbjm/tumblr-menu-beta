@@ -6,6 +6,8 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.ext.SatelliteMenu.SateliteClickedListener;
 
 public class SatelliteMenuActivity extends Activity {
@@ -25,14 +27,16 @@ public class SatelliteMenuActivity extends Activity {
 //        menu.setTotalSpacingDegree(60);
         
         List<SatelliteMenuItem> items = new ArrayList<SatelliteMenuItem>();
-        items.add(new SatelliteMenuItem(1, R.drawable.status, "Uno!"));
-        items.add(new SatelliteMenuItem(2, R.drawable.photo, "Dos!"));
-        items.add(new SatelliteMenuItem(3, R.drawable.feelings, "Tres!"));
+        items.add(new SatelliteMenuItem(1, R.drawable.status, "Status"));
+        items.add(new SatelliteMenuItem(2, R.drawable.photo, "Photo"));
+        items.add(new SatelliteMenuItem(3, R.drawable.feelings, "Feeling"));
         menu.addItems(items);        
         
         menu.setOnItemClickedListener(new SateliteClickedListener() {
 			public void eventOccured(int id) {
 				Log.i("sat", "Clicked on " + id);
+				getWindow().setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+				setContentView(R.layout.main);
 			}
 		});
     }
