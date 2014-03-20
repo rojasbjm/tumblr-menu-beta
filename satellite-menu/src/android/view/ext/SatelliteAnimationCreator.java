@@ -1,7 +1,6 @@
 package android.view.ext;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -16,12 +15,8 @@ import android.view.animation.TranslateAnimation;
  *
  */
 public class SatelliteAnimationCreator {
-   
-	private static String TAG_ = "SATELLITE";
-	
 	
     public static Animation createItemInAnimation(Context context, int index, long expandDuration, int x, int y){
-    	Log.d(TAG_, "did enter createItemInAnimation");
         RotateAnimation rotate = new RotateAnimation(720, 0, 
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
@@ -72,8 +67,6 @@ public class SatelliteAnimationCreator {
     }
     
     public static Animation createItemOutAnimation(Context context, int index, long expandDuration, int x, int y){
-    	
-    	Log.d(TAG_, "did enter createItemOutAnimation");
     	
         AlphaAnimation alphaAnimation = new AlphaAnimation(0f, 1f);
         long alphaDuration = 60;
@@ -137,7 +130,6 @@ public class SatelliteAnimationCreator {
     
     public static int getTranslateY(float degree, int distance){
         return Double.valueOf(-1 * distance * Math.sin(Math.toRadians(degree))).intValue();
-        // (distance + (dpiScreen / 2))
     }
 
 }

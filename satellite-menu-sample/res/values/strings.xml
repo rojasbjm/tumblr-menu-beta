@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Satellite Menu Sample Activity</string>
-    <string name="app_name">satellite-menu-sample</string>
+    <string name="hello">My App Activity Activity</string>
+    <string name="app_name">My App</string>
 
 </resources>

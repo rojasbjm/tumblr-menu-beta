@@ -14,11 +14,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
+import android.view.animation.Animation.AnimationListener;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -62,22 +62,24 @@ public class SatelliteMenu extends FrameLayout {
 	private int satelliteDistance = DEFAULT_SATELLITE_DISTANCE;	
 	private int expandDuration = DEFAULT_EXPAND_DURATION;
 	private boolean closeItemsOnClick = DEFAULT_CLOSE_ON_CLICK;
-	
-	private static TranslateAnimation animate;
+	private static Context ctx;
 
 	public SatelliteMenu(Context context) {
 		super(context);
 		init(context, null, 0);
+		SatelliteMenu.ctx = context;
 	}
 
 	public SatelliteMenu(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context, attrs, 0);
+		SatelliteMenu.ctx = context;
 	}
 
 	public SatelliteMenu(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init(context, attrs, defStyle);
+		SatelliteMenu.ctx = context;
 	}
 
 	private void init(Context context, AttributeSet attrs, int defStyle) {
@@ -168,7 +170,6 @@ public class SatelliteMenu extends FrameLayout {
 	}
 
 	public void addItems(List<SatelliteMenuItem> items) {
-		Log.d("SATELLITE", "add items");
 		menuItems.addAll(items);
 		this.removeView(imgMain);
 		TextView tmpView = new TextView(getContext());
@@ -302,6 +303,7 @@ public class SatelliteMenu extends FrameLayout {
 		private WeakReference<View> viewRef;
 		private boolean isInAnimation;
 		private Map<View, SatelliteMenuItem> viewToItemMap;
+		private Animation animSlideIn;
 
 		public SatelliteAnimationListener(View view, boolean isIn, Map<View, SatelliteMenuItem> viewToItemMap) {
 			this.viewRef = new WeakReference<View>(view);
@@ -337,7 +339,7 @@ public class SatelliteMenu extends FrameLayout {
 			if (viewRef != null) {
 				View view = viewRef.get();
 				if (view != null) {
-					SatelliteMenuItem menuItem = viewToItemMap.get(view);
+					final SatelliteMenuItem menuItem = viewToItemMap.get(view);
 
 					if (isInAnimation) {
 						menuItem.getView().setVisibility(View.GONE);
@@ -345,11 +347,24 @@ public class SatelliteMenu extends FrameLayout {
 						menuItem.getCloneView().findViewById(R.id.sat_text).setVisibility(View.GONE);
 					} else {
 						menuItem.getView().setVisibility(View.VISIBLE);
-						animate = new TranslateAnimation(menuItem.getCloneView().findViewById(R.id.sat_text).getWidth(),0,0,0);
-						animate.setDuration(500);
-						animate.setFillAfter(true);
+						animSlideIn = AnimationUtils.loadAnimation(SatelliteMenu.ctx, R.anim.sat_slide);
+						animSlideIn.setAnimationListener(new AnimationListener() {
+							
+							@Override
+							public void onAnimationStart(Animation animation) {
+							}
+							
+							@Override
+							public void onAnimationRepeat(Animation animation) {
+							}
+							
+							@Override
+							public void onAnimationEnd(Animation animation) {
+							}
+						});
+						
+						menuItem.getCloneView().findViewById(R.id.sat_text).startAnimation(animSlideIn);
 						menuItem.getCloneView().findViewById(R.id.sat_text).setVisibility(View.VISIBLE);
-						menuItem.getCloneView().findViewById(R.id.sat_text).startAnimation(animate);
 						menuItem.getCloneView().setVisibility(View.VISIBLE);
 					}
 				}
