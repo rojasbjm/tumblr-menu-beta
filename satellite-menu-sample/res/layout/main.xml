@@ -2,17 +2,26 @@
 <FrameLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:sat="http://schemas.android.com/apk/lib/android.view.ext"
+    xmlns:blur="http://schemas.android.com/apk/res/fi.harism.anndblur"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/oh_background"
     android:orientation="vertical" >
+    
+    <fi.harism.anndblur.BlurRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#4FF8"
+        blur:radius="15dp" >
     
     <View
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="#7FFFFFFF"
         android:layout_gravity="bottom" />
-    
+     </fi.harism.anndblur.BlurRelativeLayout>
+     
     <android.view.ext.SatelliteMenu
         android:id="@+id/menu"
         android:layout_width="match_parent"
@@ -24,4 +33,5 @@
         sat:mainImage="@drawable/ic_launcher"
         sat:satelliteDistance="400dp"
         sat:totalSpacingDegree="90" />
+   
 </FrameLayout>
