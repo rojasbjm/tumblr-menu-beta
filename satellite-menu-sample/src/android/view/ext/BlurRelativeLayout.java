@@ -14,19 +14,19 @@
    limitations under the License.
  */
 
-package fi.harism.anndblur;
+package android.view.ext;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.ext.R;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 /**
  * LinearLayout which applies blur effect into its background
  */
-public class BlurLinearLayout extends LinearLayout {
+public class BlurRelativeLayout extends RelativeLayout {
 
     // Blur renderer instance
     private BlurRenderer mBlurRenderer;
@@ -34,12 +34,26 @@ public class BlurLinearLayout extends LinearLayout {
     /**
      * Default constructor
      */
-    public BlurLinearLayout(Context context, AttributeSet attrs) {
+    public BlurRelativeLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(attrs);
+    }
 
+    /**
+     * Default constructor
+     */
+    public BlurRelativeLayout(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        init(attrs);
+    }
+
+    /**
+     * Initialize layout to handle background blur effect
+     */
+    private void init(AttributeSet attrs) {
         mBlurRenderer = new BlurRenderer(this);
 
-        // Read blur radius from the layout parameters
+        // Read blur radius from layout variables
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.BlurView);
         for (int i = 0; i < a.getIndexCount(); ++i) {
             int attr = a.getIndex(i);

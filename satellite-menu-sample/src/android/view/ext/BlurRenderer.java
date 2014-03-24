@@ -14,17 +14,13 @@
    limitations under the License.
  */
 
-package fi.harism.anndblur;
+package android.view.ext;
 
-import fi.harism.anndblur.ScriptC_StackBlur;
-import fi.harism.anndblur.ScriptField_RadiusStruct;
-import fi.harism.anndblur.ScriptField_SizeStruct;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.Rect;
 import android.support.v8.renderscript.Allocation;
 import android.support.v8.renderscript.Element;
 import android.support.v8.renderscript.RenderScript;

@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:sat="http://schemas.android.com/apk/lib/android.view.ext"
-    xmlns:blur="http://schemas.android.com/apk/res/fi.harism.anndblur"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sat="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/oh_background"
     android:orientation="vertical" >
-    
-    <fi.harism.anndblur.BlurRelativeLayout
+
+     <android.view.ext.BlurLinearLayout
+        android:id="@+id/footer_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="#4FF8"
-        blur:radius="15dp" >
+        android:layout_height="200dp"
+        android:layout_gravity="top"
+        android:background="#46CF"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        
+    </android.view.ext.BlurLinearLayout>
     
     <View
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="#7FFFFFFF"
-        android:layout_gravity="bottom" />
-     </fi.harism.anndblur.BlurRelativeLayout>
-     
-    <android.view.ext.SatelliteMenu
-        android:id="@+id/menu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="12dp"
-        sat:closeOnClick="true"
-        sat:expandDuration="500"
-        sat:mainImage="@drawable/ic_launcher"
-        sat:satelliteDistance="400dp"
-        sat:totalSpacingDegree="90" />
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:background="#7FFFFFFF" />
+
+        <android.view.ext.SatelliteMenu
+            android:id="@+id/menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="12dp"
+            sat:closeOnClick="true"
+            sat:expandDuration="500"
+            sat:mainImage="@drawable/ic_launcher"
+            sat:satelliteDistance="400dp"
+            sat:totalSpacingDegree="90" />
+    
    
+
 </FrameLayout>

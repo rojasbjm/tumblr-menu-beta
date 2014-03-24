@@ -21,7 +21,7 @@
 //
 
 #pragma version(1)
-#pragma rs java_package_name(fi.harism.anndblur)
+#pragma rs java_package_name(android.view.ext)
 #pragma rs_fp_imprecise
 
 #include "rs_types.rsh"

@@ -7,15 +7,23 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.ext.SatelliteMenu.SateliteClickedListener;
 
 public class SatelliteMenuActivity extends Activity {
+	
+	private BlurLinearLayout mFooterLayout;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
+        
+        
+        int maxBlur = getWindowManager().getDefaultDisplay().getWidth() / 8;
+        mFooterLayout = (BlurLinearLayout)findViewById(R.id.footer_layout);
+        mFooterLayout.setBlurRadius(maxBlur /14);
+        
         
         SatelliteMenu menu = (SatelliteMenu) findViewById(R.id.menu);
         
@@ -35,7 +43,6 @@ public class SatelliteMenuActivity extends Activity {
         menu.setOnItemClickedListener(new SateliteClickedListener() {
 			public void eventOccured(int id) {
 				Log.i("sat", "Clicked on " + id);
-				getWindow().setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
 				setContentView(R.layout.main);
 			}
 		});
